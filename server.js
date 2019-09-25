@@ -9,8 +9,12 @@ app.use(parser.json());
 
 app.post("/search", (request, response)=>{
   let searchInput = request.body.input
+  // console.log(searchInput)
   axios.get(`https://www.mediawiki.org/w/api.php?action=opensearch&search=${searchInput}`)
-  response.send('success')
+    .then((res)=>{
+      // console.log('data: ', res.data)
+      response.send(res.data)
+    })
 })
 
 let port = 3000;
