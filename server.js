@@ -7,6 +7,10 @@ const app = express();
 app.use(cors());
 app.use(parser.json());
 
+app.get("/", (req, res)=>{
+  res.send('success')
+})
+
 app.post("/search", (request, response)=>{
   let searchInput = request.body.input
   // console.log(searchInput)
@@ -17,7 +21,7 @@ app.post("/search", (request, response)=>{
     })
 })
 
-let port = 3000;
+let port = process.env.PORT || 3000;
 app.listen(port, ()=>{
   console.log(`Listening on port ${port}...`)
 })
